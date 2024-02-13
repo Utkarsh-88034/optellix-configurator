@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { configContext } from "../Store/ConfigContext";
 
 const MenuItem = ({ options, title, setCamPos, campos }) => {
   const [openOptions, setOpenOptions] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState(0);
+  const { config, setConfig } = useContext(configContext);
   return (
     <div
       onClick={() => {
@@ -51,12 +53,13 @@ const MenuItem = ({ options, title, setCamPos, campos }) => {
       </div>
       {openOptions && (
         <div className="w-full">
-          {options.map((color, id) => (
+          {options.map((name, id) => (
             <div
               className={`h-40 w-full flex justify-center items-center px-5 cursor-pointer transition-all duration-300 ${
                 selectedOptions == id && "bg-white/20"
               }`}
               onClick={() => {
+                setConfig({...config,[title]:name})
                 setSelectedOptions(id);
               }}
             >
@@ -65,7 +68,7 @@ const MenuItem = ({ options, title, setCamPos, campos }) => {
                   selectedOptions == id ? "text-white/100" : "text-white/55"
                 }`}
               >
-                {color}
+                {name}
               </p>
             </div>
           ))}

@@ -9,9 +9,9 @@ const Sidebar = ({ parentClass, setCamPos }) => {
   const windShieldOptions = ["No Windshield", "Long Windshield"];
   const seatOptions = ["No Passenger Seat", "Passenger Seat"];
 
-  const engineGuardOptions = ["Gray Engine Guard", "Gold Engine Guard"];
+  const mudGaurdOptions = ["Small Mud Guard", "Long Mud Guard"];
 
-  const sumpGuardOptions = ["Gray Sump Guard", "Black Sump Guard"];
+  const exhaustOptions = ["Single Exhaust", "Double Exhuast"];
   const handleBarOptions = ["Normal Height", "High Bar"];
   return (
     <div className="w-[20%] h-screen bg-black overflow-y-scroll hidescrollbar">
@@ -47,17 +47,17 @@ const Sidebar = ({ parentClass, setCamPos }) => {
         parentClass == "protection" && (
           <>
             <MenuItem
-              options={engineGuardOptions}
-              title="ENGINE GUARD"
+              options={mudGaurdOptions}
+              title="MUD GAURD"
               setCamPos={setCamPos}
-              campos={new Vector3(-1.14, 0.24, 0.01)}
+              campos={new Vector3(-1.12, 0.47, 2.19)}
             />
 
             <MenuItem
-              options={sumpGuardOptions}
-              title="SUMP GUARD"
+              options={exhaustOptions}
+              title="EXHAUST"
               setCamPos={setCamPos}
-              campos={new Vector3(0.66, -0.61, 0.73)}
+              campos={new Vector3(1.68, 0.12, -1.66)}
             />
           </>
         )
