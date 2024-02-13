@@ -3,7 +3,7 @@ import MenuItem from "./MenuItem";
 import { Vector3 } from "three";
 
 const Sidebar = ({ parentClass, setCamPos }) => {
-  const colorOptions = ["Blue", "Black", "Red", "Green", "Yellow"];
+  const colorOptions = ["Red", "Silver"];
   const sizeOptions = ["Large", "Small", "Medium"];
 
   const windShieldOptions = ["No Windshield", "Long Windshield"];
@@ -18,7 +18,12 @@ const Sidebar = ({ parentClass, setCamPos }) => {
       {parentClass == "style" ? (
         <>
           <MenuItem options={colorOptions} title="COLORS" />
-          <MenuItem options={sizeOptions} title="SIZE" />
+          <MenuItem
+            options={exhaustOptions}
+            title="EXHAUST"
+            setCamPos={setCamPos}
+            campos={new Vector3(1.68, 0.12, -1.66)}
+          />
         </>
       ) : parentClass == "comfort" ? (
         <>
@@ -50,14 +55,7 @@ const Sidebar = ({ parentClass, setCamPos }) => {
               options={mudGaurdOptions}
               title="MUD GAURD"
               setCamPos={setCamPos}
-              campos={new Vector3(-1.12, 0.47, 2.19)}
-            />
-
-            <MenuItem
-              options={exhaustOptions}
-              title="EXHAUST"
-              setCamPos={setCamPos}
-              campos={new Vector3(1.68, 0.12, -1.66)}
+              campos={new Vector3(-0.71, 0.27, 1.06)}
             />
           </>
         )

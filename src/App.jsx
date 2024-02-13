@@ -52,14 +52,16 @@ function App() {
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
             <Stage shadows="contact">
-              {<Base/>}
-              {config.WINDSHIELD != "No Windshield" && <WindShield/>}
-              {config.SEAT == "No Passenger Seat" && <NoSeat/>}
-              {config.SEAT != "No Passenger Seat" && <Seat/>}
-              {config["HANDLE BAR"] == "Normal Height" && <Handlebar_Normal /> }
-              {config["EXHAUST"] != "Single Exhaust"  &&  <Exhaust/>}
-              {config["MUD GAURD"] == "Small Mud Guard" && <SmallMudguard/>}
-              {config["MUD GAURD"] == "Long Mud Guard" && <LongMudguard/>}
+              {<Base />}
+              {config.WINDSHIELD != "No Windshield" && <WindShield />}
+              {config.SEAT == "No Passenger Seat" && <NoSeat />}
+              {config.SEAT != "No Passenger Seat" && <Seat />}
+              {config["HANDLE BAR"] == "Normal Height" && <Handlebar_Normal />}
+              {config["HANDLE BAR"] == "High Bar" && <Handlebar_Normal />}
+
+              {config["EXHAUST"] != "Single Exhaust" && <Exhaust />}
+              {config["MUD GAURD"] == "Small Mud Guard" && <SmallMudguard />}
+              {config["MUD GAURD"] == "Long Mud Guard" && <LongMudguard />}
             </Stage>
             {/* <Base /> */}
             <CameraControl position={camPos} />
