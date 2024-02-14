@@ -10,8 +10,7 @@ export function Seat(props) {
   const { nodes, materials } = useGLTF('/Seat.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_60002.geometry} material={materials['Plastics.002']} />
-      <mesh geometry={nodes.Object_60002_1.geometry} material={materials['Seat.003']} />
+      <mesh geometry={nodes.Seat.geometry} material={materials['Seat.003']} />
     </group>
   )
 }

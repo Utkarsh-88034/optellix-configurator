@@ -15,6 +15,9 @@ import { Handlebar_Normal } from "./assets/Handlebar_Normal";
 import { Exhaust } from "./assets/Exhaust";
 import { SmallMudguard } from "./assets/SmallMudguard";
 import { LongMudguard } from "./assets/LongMudguard";
+import { Base_grey } from "./assets/Base_grey";
+import { SmallMudguard_grey } from "./assets/SmallMudguard_grey";
+import { LongMudguard_grey } from "./assets/LongMudguard_grey";
 
 function App() {
   const [parentClass, setParentClass] = useState("style");
@@ -52,16 +55,20 @@ function App() {
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
             <Stage shadows="contact">
-              {<Base />}
+              {config.COLORS == "Red" && <Base />}
+              {config.COLORS == "Silver" && <Base_grey/>}
               {config.WINDSHIELD != "No Windshield" && <WindShield />}
+
               {config.SEAT == "No Passenger Seat" && <NoSeat />}
               {config.SEAT != "No Passenger Seat" && <Seat />}
               {config["HANDLE BAR"] == "Normal Height" && <Handlebar_Normal />}
               {config["HANDLE BAR"] == "High Bar" && <Handlebar_Normal />}
 
               {config["EXHAUST"] != "Single Exhaust" && <Exhaust />}
-              {config["MUD GAURD"] == "Small Mud Guard" && <SmallMudguard />}
-              {config["MUD GAURD"] == "Long Mud Guard" && <LongMudguard />}
+              {config["MUD GAURD"] == "Small Mud Guard" && config.COLORS == "Red" && <SmallMudguard />}
+              {config["MUD GAURD"] == "Small Mud Guard" && config.COLORS == "Silver" && <SmallMudguard_grey />}
+              {config["MUD GAURD"] == "Long Mud Guard" && config.COLORS == "Red" && <LongMudguard />}
+              {config["MUD GAURD"] == "Long Mud Guard" && config.COLORS == "Silver" && <LongMudguard_grey />}
             </Stage>
             {/* <Base /> */}
             <CameraControl position={camPos} />
