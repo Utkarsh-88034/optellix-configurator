@@ -18,6 +18,7 @@ import { LongMudguard } from "./assets/LongMudguard";
 import { Base_grey } from "./assets/Base_grey";
 import { SmallMudguard_grey } from "./assets/SmallMudguard_grey";
 import { LongMudguard_grey } from "./assets/LongMudguard_grey";
+import { Handlebar_Long } from "./assets/Handlebar_Long";
 
 function App() {
   const [parentClass, setParentClass] = useState("style");
@@ -62,15 +63,13 @@ function App() {
               {config.SEAT == "No Passenger Seat" && <NoSeat />}
               {config.SEAT != "No Passenger Seat" && <Seat />}
               {config["HANDLE BAR"] == "Normal Height" && <Handlebar_Normal />}
-              {config["HANDLE BAR"] == "High Bar" && <Handlebar_Normal />}
-
+              {config["HANDLE BAR"] == "High Bar" && <Handlebar_Long />}
               {config["EXHAUST"] != "Single Exhaust" && <Exhaust />}
               {config["MUD GAURD"] == "Small Mud Guard" && config.COLORS == "Red" && <SmallMudguard />}
               {config["MUD GAURD"] == "Small Mud Guard" && config.COLORS == "Silver" && <SmallMudguard_grey />}
               {config["MUD GAURD"] == "Long Mud Guard" && config.COLORS == "Red" && <LongMudguard />}
               {config["MUD GAURD"] == "Long Mud Guard" && config.COLORS == "Silver" && <LongMudguard_grey />}
             </Stage>
-            {/* <Base /> */}
             <CameraControl position={camPos} />
           </Suspense>
         </Canvas>
