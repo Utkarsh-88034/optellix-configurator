@@ -106,7 +106,7 @@ const Sidebar = ({ parentClass, setCamPos }) => {
     },
   ];
   return (
-    <div className="w-[30%] h-screen bg-white overflow-y-scroll hidescrollbar">
+    <div className="w-[35%] max-w-[400px] h-screen bg-white overflow-y-scroll hidescrollbar">
       <div className=" h-[250px] bg-black w-full flex flex-col justify-between p-2">
         <div className="flex text-white items-center gap-2">
           <svg

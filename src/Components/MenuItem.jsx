@@ -14,12 +14,12 @@ const MenuItem = ({ options, title, setCamPos, campos, type }) => {
   return (
     <div>
       <div
-        className="h-max w-full flex cursor-pointer p-2 text-black flex-col py-4 mb-2 bg-gray-50"
+        className="h-max w-full flex cursor-pointer p-2 text-black flex-col py-4 mb-3 bg-gray-50"
         onClick={() => {
           setOpenOptions(!openOptions);
         }}
       >
-        <p className={`text-2xl text-black my-2`}>{title}</p>
+        <p className={`text-2xl text-black`}>{title}</p>
 
         <div
           className={`h-max flex justify-center gap-2 items-center mt-4 ${
@@ -49,7 +49,7 @@ const MenuItem = ({ options, title, setCamPos, campos, type }) => {
               ) : (
                 (type = "card" && (
                   <div
-                    className={`h-40 w-full border rounded-[12px] p-4 flex items-center justify-between transition-all ${
+                    className={`h-40 w-[95%] border rounded-[12px] p-4 flex items-center justify-between transition-all ${
                       selectedOptions?.name == option.name &&
                       "border-blue-600 border-4"
                     }`}
