@@ -1,7 +1,7 @@
-import { Suspense, useContext, useState } from "react";
+import { Suspense, useContext, useRef, useState } from "react";
 import "./App.css";
 import { Canvas, useLoader } from "@react-three/fiber";
-import { OrbitControls, Stage } from "@react-three/drei";
+import { Environment, OrbitControls, PivotControls, Stage } from "@react-three/drei";
 import Sidebar from "./Components/Sidebar";
 import VerticalSideBar from "./Components/VerticalSideBar";
 
@@ -19,12 +19,13 @@ import { Base_grey } from "./assets/Base_grey";
 import { SmallMudguard_grey } from "./assets/SmallMudguard_grey";
 import { LongMudguard_grey } from "./assets/LongMudguard_grey";
 import { Handlebar_Long } from "./assets/Handlebar_Long";
+import { Stage_Props } from "./assets/Stage";
 
 function App() {
   const [parentClass, setParentClass] = useState("style");
   const [camPos, setCamPos] = useState();
   const { config, setConfig } = useContext(configContext);
-  console.log(config);
+  const controls  = useRef("")
   return (
     <>
       <div className="w-screen h-screen overflow-hidden flex">
@@ -42,18 +43,21 @@ function App() {
           {/* <directionalLight position={(1, 4, 0)} intensity={10} /> */}
 
           <Suspense>
-            {/* <Environment
-              background={true}
+            <Environment
+              background={false}
               // can be true, false or "only" (which only sets the background) (default: false)
-              files="bg2.hdr"
+              files="studio_small_01_1k.exr"
               path="/"
-            /> */}
+            />
 
             {/* <mesh>
                 <boxGeometry args={[2, 2, 2]} />
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
-            <Stage shadows="contact">
+
+                <Stage_Props position={[0,-0.58,0]}/>
+
+            <Stage environment={null}>
               {config.Paint == "Metallic Red" && <Base />}
               {config.Paint == "LA Silver" && <Base_grey />}
               {config.Windshield != "No Windshield" && <WindShield />}
