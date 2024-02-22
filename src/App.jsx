@@ -24,13 +24,11 @@ function App() {
   const [parentClass, setParentClass] = useState("style");
   const [camPos, setCamPos] = useState();
   const { config, setConfig } = useContext(configContext);
-
+  console.log(config);
   return (
     <>
       <div className="w-screen h-screen overflow-hidden flex">
-        <VerticalSideBar setParentClass={setParentClass} />
-        <Sidebar parentClass={parentClass} setCamPos={setCamPos} />
-        <Canvas className="h-full w-[73%]" shadows="soft">
+        <Canvas className="h-full w-[75%]" shadows="soft">
           {/* <pointLight
             position={[-1.1, 1, 0.16]}
             intensity={3}
@@ -56,23 +54,31 @@ function App() {
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
             <Stage shadows="contact">
-              {config.COLORS == "Red" && <Base />}
-              {config.COLORS == "Silver" && <Base_grey/>}
-              {config.WINDSHIELD != "No Windshield" && <WindShield />}
+              {config.Paint == "Metallic Red" && <Base />}
+              {config.Paint == "LA Silver" && <Base_grey />}
+              {config.Windshield != "No Windshield" && <WindShield />}
 
-              {config.SEAT == "No Passenger Seat" && <NoSeat />}
-              {config.SEAT != "No Passenger Seat" && <Seat />}
-              {config["HANDLE BAR"] == "Normal Height" && <Handlebar_Normal />}
-              {config["HANDLE BAR"] == "High Bar" && <Handlebar_Long />}
-              {config["EXHAUST"] != "Single Exhaust" && <Exhaust />}
-              {config["MUD GAURD"] == "Small Mud Guard" && config.COLORS == "Red" && <SmallMudguard />}
-              {config["MUD GAURD"] == "Small Mud Guard" && config.COLORS == "Silver" && <SmallMudguard_grey />}
-              {config["MUD GAURD"] == "Long Mud Guard" && config.COLORS == "Red" && <LongMudguard />}
-              {config["MUD GAURD"] == "Long Mud Guard" && config.COLORS == "Silver" && <LongMudguard_grey />}
+              {config.Seat == "Driver Only" && <NoSeat />}
+              {config.Seat == "Passenger Seat" && <Seat />}
+              {config["Handle Bar"] == "Normal Height" && <Handlebar_Normal />}
+              {config["Handle Bar"] == "High Bar" && <Handlebar_Long />}
+              {config["Exhaust"] != "Single Side Dual Exhaust System" && (
+                <Exhaust />
+              )}
+              {config["Mud Guard"] == "Small Mud Guard" &&
+                config.Paint == "Metallic Red" && <SmallMudguard />}
+              {config["Mud Guard"] == "Small Mud Guard" &&
+                config.Paint == "LA Silver" && <SmallMudguard_grey />}
+              {config["Mud Guard"] == "Long Mud Guard" &&
+                config.Paint == "Metallic Red" && <LongMudguard />}
+              {config["Mud Guard"] == "Long Mud Guard" &&
+                config.Paint == "LA Silver" && <LongMudguard_grey />}
             </Stage>
             <CameraControl position={camPos} />
           </Suspense>
         </Canvas>
+        {/* <VerticalSideBar setParentClass={setParentClass} /> */}
+        <Sidebar parentClass={parentClass} setCamPos={setCamPos} />
       </div>
     </>
   );

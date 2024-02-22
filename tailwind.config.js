@@ -8,7 +8,7 @@ export default {
     function ({ addUtilities }) {
       addUtilities({
         ".hidescrollbar::-webkit-scrollbar": {
-          width: "0.4em",
+          width: "0",
         },
         ".hidescrollbar::-webkit-scrollbar-track": {
           backgroundColor: "transparent",

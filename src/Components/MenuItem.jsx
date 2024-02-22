@@ -1,79 +1,99 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { configContext } from "../Store/ConfigContext";
 
-const MenuItem = ({ options, title, setCamPos, campos }) => {
+const MenuItem = ({ options, title, setCamPos, campos, type }) => {
   const [openOptions, setOpenOptions] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState();
   const { config, setConfig } = useContext(configContext);
+  console.log(config);
+  useEffect(() => {
+    if (!selectedOptions) {
+      setSelectedOptions(options[0]);
+    }
+  });
   return (
-    <div
-      onClick={() => {
-        if (setCamPos && campos && !openOptions) setCamPos(campos);
-      }}
-    >
+    <div>
       <div
-        className="h-40 w-full flex justify-between items-center px-5 cursor-pointer border-b border-b-white/20"
+        className="h-max w-full flex cursor-pointer p-2 text-black flex-col py-4 mb-2 bg-gray-50"
         onClick={() => {
           setOpenOptions(!openOptions);
         }}
       >
-        <p
-          className={`text-xl ${
-            openOptions ? "text-white/100" : "text-white/55"
+        <p className={`text-2xl text-black my-2`}>{title}</p>
+
+        <div
+          className={`h-max flex justify-center gap-2 items-center mt-4 ${
+            type == "icon" ? "flex-row" : (type = "card" && "flex-col")
           }`}
         >
-          {title}
-        </p>
-        <svg
-          className={`transition-all duration-300 ${
-            openOptions && "rotate-180"
-          }`}
-          width="30px"
-          height="30px"
-          viewBox="0 0 1024 1024"
-          class="icon"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="#ffffff"
-          stroke="#ffffff"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            <path
-              d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z"
-              fill="#ffffff"
-            ></path>
-          </g>
-        </svg>
-      </div>
-      {openOptions && (
-        <div className="w-full">
-          {options.map((name, id) => (
-            <div
-              className={`h-40 w-full flex justify-center items-center px-5 cursor-pointer transition-all duration-300 ${
-                selectedOptions == id && "bg-white/20"
-              }`}
-              onClick={() => {
-                setConfig({...config,[title]:name})
-                setSelectedOptions(id);
-              }}
-            >
-              <p
-                className={`text-2xl ${
-                  selectedOptions == id ? "text-white/100" : "text-white/55"
-                }`}
-              >
-                {name}
-              </p>
-            </div>
+          {options.map((option, id) => (
+            <>
+              {type == "icon" ? (
+                <div
+                  className={`h-[80px] w-[80px]  flex justify-center items-center rounded-[15px] ${
+                    selectedOptions?.name == option.name &&
+                    "border-blue-600 border-[3px]"
+                  }`}
+                  onClick={() => {
+                    setSelectedOptions(option);
+                    setConfig({ ...config, [title]: option.name });
+                    setCamPos(campos);
+                  }}
+                >
+                  <div
+                    className={`border  h-[60px] w-[60px] rounded-full flex justify-end items-center`}
+                  >
+                    <img src={option?.icon} className="h-full w-full" />
+                  </div>
+                </div>
+              ) : (
+                (type = "card" && (
+                  <div
+                    className={`h-40 w-full border rounded-[12px] p-4 flex items-center justify-between transition-all ${
+                      selectedOptions?.name == option.name &&
+                      "border-blue-600 border-4"
+                    }`}
+                    onClick={() => {
+                      setSelectedOptions(option);
+                      setConfig({ ...config, [title]: option.name });
+                      setCamPos(campos);
+                    }}
+                  >
+                    <div className="h-full relative">
+                      <p className="text-lg font-semibold mb-1">
+                        {option.name}
+                      </p>
+                      <p>{option.description}</p>
+                      <p className="absolute bottom-0 w-max text-sm font-light">
+                        {option.included ? "Included" : "Not Included"}
+                      </p>
+                    </div>
+                    <div className="">
+                      <p className="text-lg font-light">{option.price}</p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </>
           ))}
         </div>
-      )}
+        {type === "icon" && (
+          <>
+            <div className="text-center flex gap-2 justify-center items-center mt-2">
+              <p className="font-semibold text-sm">
+                {selectedOptions?.description}
+              </p>
+              <p className="font-light text-sm">
+                {selectedOptions?.included && "Included"}
+              </p>
+            </div>
+            <div className="text-center flex gap-1 justify-center items-center mt-2">
+              <p className="text-md">{selectedOptions?.name}</p>
+              <p className="text-md font-light">{selectedOptions?.price}</p>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
