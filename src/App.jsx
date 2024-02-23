@@ -20,6 +20,7 @@ import { SmallMudguard_grey } from "./assets/SmallMudguard_grey";
 import { LongMudguard_grey } from "./assets/LongMudguard_grey";
 import { Handlebar_Long } from "./assets/Handlebar_Long";
 import { Stage_Props } from "./assets/Stage";
+import { Engine_Guard } from "./assets/Engine_Guard";
 
 function App() {
   const [parentClass, setParentClass] = useState("style");
@@ -58,6 +59,7 @@ function App() {
                 <Stage_Props position={[0,-0.58,0]}/>
 
             <Stage environment={null}>
+              <Engine_Guard/>
               {config.Paint == "Metallic Red" && <Base />}
               {config.Paint == "LA Silver" && <Base_grey />}
               {config.Windshield != "No Windshield" && <WindShield />}
