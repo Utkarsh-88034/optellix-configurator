@@ -30,7 +30,7 @@ import { Engine_Guard } from "./assets/Engine_Guard";
 function App() {
   const [parentClass, setParentClass] = useState("style");
   const [camPos, setCamPos] = useState();
-  const [close, setClose] = useState(false);
+  const [close, setClose] = useState(true);
   const { config, setConfig } = useContext(configContext);
   const controls = useRef("");
   return (
