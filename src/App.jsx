@@ -1,7 +1,12 @@
 import { Suspense, useContext, useRef, useState } from "react";
 import "./App.css";
 import { Canvas, useLoader } from "@react-three/fiber";
-import { Environment, OrbitControls, PivotControls, Stage } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  PivotControls,
+  Stage,
+} from "@react-three/drei";
 import Sidebar from "./Components/Sidebar";
 import VerticalSideBar from "./Components/VerticalSideBar";
 
@@ -25,11 +30,53 @@ import { Engine_Guard } from "./assets/Engine_Guard";
 function App() {
   const [parentClass, setParentClass] = useState("style");
   const [camPos, setCamPos] = useState();
+  const [close, setClose] = useState(false);
   const { config, setConfig } = useContext(configContext);
-  const controls  = useRef("")
+  const controls = useRef("");
   return (
     <>
       <div className="w-screen h-screen overflow-hidden flex">
+        <svg
+          width="40px"
+          height="40px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#ffffff"
+          className="absolute right-2 sm:hidden cursor-pointer z-10"
+          onClick={() => {
+            setClose(!close);
+          }}
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <path
+              d="M20 7L4 7"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            ></path>{" "}
+            <path
+              opacity="0.5"
+              d="M20 12L4 12"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            ></path>{" "}
+            <path
+              d="M20 17L4 17"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            ></path>{" "}
+          </g>
+        </svg>
         <Canvas className="h-full w-[75%]" shadows="soft">
           {/* <pointLight
             position={[-1.1, 1, 0.16]}
@@ -56,10 +103,10 @@ function App() {
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
 
-                <Stage_Props position={[0,-0.58,0]}/>
+            <Stage_Props position={[0, -0.58, 0]} />
 
             <Stage environment={null}>
-              <Engine_Guard/>
+              <Engine_Guard />
               {config.Paint == "Metallic Red" && <Base />}
               {config.Paint == "LA Silver" && <Base_grey />}
               {config.Windshield != "No Windshield" && <WindShield />}
@@ -84,7 +131,11 @@ function App() {
           </Suspense>
         </Canvas>
         {/* <VerticalSideBar setParentClass={setParentClass} /> */}
-        <Sidebar parentClass={parentClass} setCamPos={setCamPos} />
+        <Sidebar
+          parentClass={parentClass}
+          setCamPos={setCamPos}
+          close={close}
+        />
       </div>
     </>
   );
