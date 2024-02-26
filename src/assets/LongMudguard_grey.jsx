@@ -10,7 +10,7 @@ export function LongMudguard_grey(props) {
   const { nodes, materials } = useGLTF('/LongMudguard_grey.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.longMudGuard_grey.geometry} material={materials['Plastics.001']} />
+      <mesh geometry={nodes.longMudGuard.geometry} material={materials['Plastics.002']} />
     </group>
   )
 }
