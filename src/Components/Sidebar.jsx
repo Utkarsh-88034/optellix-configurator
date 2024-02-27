@@ -4,7 +4,7 @@ import { Vector3 } from "three";
 import paint1 from "../assets/paint-red.png";
 import paint2 from "../assets/paint-silver.png";
 
-const Sidebar = ({ parentClass, setCamPos }) => {
+const Sidebar = ({ parentClass, setCamPos, close }) => {
   const windShieldOptions = [
     {
       name: "No Windshield",
@@ -106,7 +106,11 @@ const Sidebar = ({ parentClass, setCamPos }) => {
     },
   ];
   return (
-    <div className="w-[35%] max-w-[400px] h-screen bg-white overflow-y-scroll hidescrollbar">
+    <div
+      className={` sm:w-[35%] sm:static absolute w-full sm:max-w-[400px] min-w-[320px] h-screen bg-white overflow-y-scroll hidescrollbar transition-all duration-150 ${
+        close ? "left-[-100%]" : "left-0"
+      }`}
+    >
       <div className=" h-[250px] bg-black w-full flex flex-col justify-between p-2">
         <div className="flex text-white items-center gap-2">
           <svg
