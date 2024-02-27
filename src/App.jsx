@@ -21,6 +21,9 @@ import { LongMudguard_grey } from "./assets/LongMudguard_grey";
 import { Handlebar_Long } from "./assets/Handlebar_Long";
 import { Stage_Props } from "./assets/Stage";
 import { Engine_Guard } from "./assets/Engine_Guard";
+import { Lights } from "./assets/Lights";
+import { Bloom } from "@react-three/postprocessing";
+import { BlurPass, Resizer, KernelSize, Resolution } from 'postprocessing'
 
 function App() {
   const [parentClass, setParentClass] = useState("style");
@@ -47,7 +50,8 @@ function App() {
             <Environment
               background={false}
               // can be true, false or "only" (which only sets the background) (default: false)
-              files="studio_small_01_1k.exr"
+              files="provence_studio_1k.exr"
+              intensity={0.1}
               path="/"
             />
 
@@ -56,7 +60,19 @@ function App() {
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
 
-                <Stage_Props position={[0,-0.58,0]}/>
+            <Stage_Props position={[0,-0.58,0]}/>
+            <Lights/>
+            <Bloom
+              intensity={1.0} // The bloom intensity.
+              blurPass={undefined} // A blur pass.
+              kernelSize={KernelSize.LARGE} // blur kernel size
+              luminanceThreshold={0.9} // luminance threshold. Raise this value to mask out darker elements in the scene.
+              luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
+              mipmapBlur={false} // Enables or disables mipmap blur.
+              resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
+              resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
+            />
+
 
             <Stage environment={null}>
               <Engine_Guard/>

@@ -10,6 +10,7 @@ export function Base_grey(props) {
   const { nodes, materials } = useGLTF('/base_grey.glb')
   return (
     <group {...props} dispose={null}>
+      <mesh geometry={nodes.NoSeat.geometry} material={materials['Plastics.002']} />
       <mesh geometry={nodes.Object_4.geometry} material={materials['Dark_Metal.002']} />
       <mesh geometry={nodes.Object_5.geometry} material={materials['Metal.002']} />
       <mesh geometry={nodes.Object_7.geometry} material={materials['Black.002']} />
