@@ -97,7 +97,7 @@ function App() {
             <Environment
               background={false}
               // can be true, false or "only" (which only sets the background) (default: false)
-              files="provence_studio_1k.exr"
+              files="studio_small_01_1k.exr"
               intensity={0.1}
               path="/"
             />

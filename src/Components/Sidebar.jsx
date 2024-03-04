@@ -5,6 +5,7 @@ import paint1 from "../assets/paint-red.png";
 import paint2 from "../assets/paint-silver.png";
 
 const Sidebar = ({ parentClass, setCamPos, close }) => {
+  const [selectedMenu,setSelectedMenu] = useState("Paint")
   const windShieldOptions = [
     {
       name: "No Windshield",
@@ -107,7 +108,7 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
   ];
   return (
     <div
-      className={` sm:w-[35%] sm:static absolute w-full sm:max-w-[400px] min-w-[320px] h-screen bg-white overflow-y-scroll hidescrollbar transition-all duration-150 ${
+      className={` sm:w-[55%] sm:static absolute w-full sm:max-w-[400px] min-w-[320px] h-screen bg-white overflow-y-scroll hidescrollbar transition-all duration-150 ${
         close ? "left-[-100%]" : "left-0"
       }`}
     >
@@ -151,42 +152,51 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
           <p>Playe around with paint, parts and more</p>
         </div>
       </div>
-      <MenuItem options={paintOptions} title="Paint" type={"icon"} />
-      <MenuItem
+
+      <div className="flex gap-1 p-2">
+      <button onClick={()=>setSelectedMenu("Paint")} className={`border border-slate-200  rounded-lg text-black p-2 text-xs ${selectedMenu === "Paint" && "border-blue-800 border-2  "}`} >Paint</button>
+      <button onClick={()=>setSelectedMenu("Exhaust")} className={` border border-slate-200  rounded-lg text-black p-2 text-xs ${selectedMenu === "Exhaust" && "border-blue-800 border-2  "}`} >Exhaust</button>
+      <button onClick={()=>setSelectedMenu("WindShield")} className={` border border-slate-200  rounded-lg text-black p-2 text-xs ${selectedMenu === "WindShield" && "border-blue-800 border-2  "} `} >Wind Shield</button>
+      <button onClick={()=>setSelectedMenu("Seat")} className={` border border-slate-200  rounded-lg text-black p-2 text-xs  ${selectedMenu === "Seat" && "border-blue-800 border-2"} `} >Seat</button>
+      <button onClick={()=>setSelectedMenu("Handle Bar")} className={` border border-slate-200  rounded-lg text-black p-2 text-xs  ${selectedMenu === "Handle Bar" && "border-blue-800 border-2"} `} >Handle Bar</button>
+      <button onClick={()=>setSelectedMenu("Mud Guard")} className={` border border-slate-200  rounded-lg text-black p-2 text-xs  ${selectedMenu === "Mud Guard" && "border-blue-800 border-2"} `} >Mud Guard</button>
+      </div>
+{selectedMenu === "Paint"     &&  <MenuItem options={paintOptions} title="Paint" type={"icon"} />   }
+    {selectedMenu === "Exhaust"     &&  <MenuItem
         options={exhaustOptions}
         title="Exhaust"
         setCamPos={setCamPos}
         campos={new Vector3(1.68, 0.12, -1.66)}
         type="card"
-      />
+      />}
 
-      <MenuItem
+      {selectedMenu === "WindShield" && <MenuItem
         options={windShieldOptions}
         title="Windshield"
         setCamPos={setCamPos}
         campos={new Vector3(0, 0.6, 1)}
-      />
+      />}
 
-      <MenuItem
+      {selectedMenu === "Seat" && <MenuItem
         options={seatOptions}
         title="Seat"
         setCamPos={setCamPos}
         campos={new Vector3(0.6, 0.95, -0.86)}
-      />
+      />}
 
-      <MenuItem
+     {selectedMenu === "Handle Bar" && <MenuItem
         options={handleBarOptions}
         title="Handle Bar"
         setCamPos={setCamPos}
         campos={new Vector3(0.38, 0.69, 0.93)}
-      />
+      />}
 
-      <MenuItem
+      {selectedMenu === "Mud Guard" && <MenuItem
         options={mudGaurdOptions}
         title="Mud Guard"
         setCamPos={setCamPos}
         campos={new Vector3(-0.71, 0.27, 1.06)}
-      />
+      />}
     </div>
   );
 };
