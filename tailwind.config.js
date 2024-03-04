@@ -7,14 +7,14 @@ export default {
   plugins: [
     function ({ addUtilities }) {
       addUtilities({
-        ".hidescrollbar::-webkit-scrollbar": {
-          width: "0",
+        ".scroll-sm::-webkit-scrollbar": {
+          width: "8px",
         },
-        ".hidescrollbar::-webkit-scrollbar-track": {
+        ".scroll-sm::-webkit-scrollbar-track": {
           backgroundColor: "transparent",
         },
-        ".hidescrollbar::-webkit-scrollbar-thumb": {
-          backgroundColor: "transparent",
+        ".scroll-sm::-webkit-scrollbar-thumb": {
+          backgroundColor: "rgba(0,0,0,0.8)",
         },
         ".writingVertical": {
           "-webkit-writing-mode": "vertical-lr",
