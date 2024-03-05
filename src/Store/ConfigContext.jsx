@@ -12,8 +12,17 @@ export const ConfigContextProvider = ({ children }) => {
     Paint: "Metallic Red",
     Size: "Medium",
   });
+  const [cost, setCost] = useState({
+    Base: 34000,
+    Windshield: 0,
+    Seat: 0,
+    "Handle Bar": 0,
+    Exhaust: 0,
+    "Mud Guard": 0,
+    Paint: 0,
+  });
   return (
-    <configContext.Provider value={{ config, setConfig }}>
+    <configContext.Provider value={{ config, setConfig, cost, setCost }}>
       {children}
     </configContext.Provider>
   );

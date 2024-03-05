@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import MenuItem from "./MenuItem";
 import { Vector3 } from "three";
 import paint1 from "../assets/paint-red.png";
 import paint2 from "../assets/paint-silver.png";
+import { configContext } from "../Store/ConfigContext";
 
 const Sidebar = ({ parentClass, setCamPos, close }) => {
   const [selectedMenu, setSelectedMenu] = useState("Paint");
   const windShieldOptions = [
     {
       name: "No Windshield",
-      price: "$0",
+      price: "0",
       description: "Open front, with no protection against wind and light",
       included: true,
       // icon: paint1,
     },
     {
       name: "Long Windshiled",
-      price: "$1000",
+      price: "1000",
       description:
         "Tinted windshiled to protect from wind and clear view of the instrument cluster",
       included: false,
@@ -26,7 +27,7 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
   const seatOptions = [
     {
       name: "Driver Only",
-      price: "$0",
+      price: "0",
       description:
         "Only driver seat with fiber panel on the rear. Gives sporty look.",
       included: true,
@@ -34,7 +35,7 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
     },
     {
       name: "Passenger Seat",
-      price: "$3000",
+      price: "3000",
       description: "Passenger seat made of premium vegan leather.",
       included: false,
       // icon: paint1,
@@ -44,14 +45,14 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
   const mudGaurdOptions = [
     {
       name: "Small Mud Guard",
-      price: "$0",
+      price: "0",
       description: "Shorter guard gives sportier look.",
       included: true,
       icon: paint1,
     },
     {
       name: "Long Mud Guard",
-      price: "$3000",
+      price: "3000",
       description: "Longer guard for more protection.",
       included: false,
       icon: paint2,
@@ -61,14 +62,14 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
   const exhaustOptions = [
     {
       name: "Single Side Dual Exhaust System",
-      price: "$0",
+      price: "0",
       description: "Textured exhaust sound peaking at 70db",
       included: true,
       // icon: paint1,
     },
     {
       name: "Both Side Dual Exhaust System",
-      price: "$1200",
+      price: "1200",
       description: "Deep muffled exhaust sound peaking at 90db",
       included: false,
       // icon: paint1,
@@ -77,13 +78,13 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
   const handleBarOptions = [
     {
       name: "Normal Height",
-      price: "$0",
+      price: "0",
       description: "Standard height included in the design.",
       included: true,
     },
     {
       name: "High Bar",
-      price: "$1000",
+      price: "1000",
       description:
         "Longer handlebar height. More comfortable for people with shorter arms",
       included: false,
@@ -93,19 +94,33 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
   const paintOptions = [
     {
       name: "Metallic Red",
-      price: "$0",
+      price: "0",
       description: "",
       included: true,
       icon: paint1,
     },
     {
       name: "LA Silver",
-      price: "$1000",
+      price: "1000",
       description: "",
       included: false,
       icon: paint2,
     },
   ];
+
+  const { cost, setCost } = useContext(configContext);
+
+  const subtotal = useMemo(() => {
+    return Object.values(cost).reduce(
+      (acc, val) => acc + (val ? parseFloat(val) : 0),
+      0
+    );
+  }, [cost]);
+
+  const taxes = useMemo(() => {
+    return (subtotal * 28) / 100;
+  }, [cost]);
+
   return (
     <div
       className={` sm:w-[55%] sm:static absolute w-full sm:max-w-[400px] min-w-[320px] h-screen scroll-sm bg-white overflow-y-scroll  transition-all duration-150 ${
@@ -184,7 +199,74 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
         setCamPos={setCamPos}
         campos={new Vector3(-0.71, 0.27, 1.06)}
       />
-      <div className="h-16 bg-white w-full sticky bottom-0"></div>
+      <div className="h-max bg-black w-full sticky bottom-[-370px] text-white flex items-center p-4 justify-between flex-col gap-10">
+        <div className="flex items-center justify-between w-full">
+          <div className="flex items-center gap-3">
+            <p className="text-2xl font-semibold">
+              $
+              {Object.values(cost).reduce(
+                (acc, val) => acc + (val ? parseFloat(val) : 0),
+                0
+              )}
+            </p>
+            <p>(Taxes not inclued)</p>
+          </div>
+          <svg
+            fill="#ffffff"
+            height="24px"
+            width="24px"
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 511.735 511.735"
+            xml:space="preserve"
+            stroke="#ffffff"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              {" "}
+              <g>
+                {" "}
+                <g>
+                  {" "}
+                  <path d="M508.788,371.087L263.455,125.753c-4.16-4.16-10.88-4.16-15.04,0L2.975,371.087c-4.053,4.267-3.947,10.987,0.213,15.04 c4.16,3.947,10.667,3.947,14.827,0l237.867-237.76l237.76,237.76c4.267,4.053,10.987,3.947,15.04-0.213 C512.734,381.753,512.734,375.247,508.788,371.087z"></path>{" "}
+                </g>{" "}
+              </g>{" "}
+            </g>
+          </svg>
+        </div>
+        <div className="w-full">
+          <div className="flex flex-col gap-1">
+            {Object.keys(cost).map((key) => (
+              <div className="flex justify-between mb-1">
+                <p>{key}</p>
+                <p>${cost[key]}</p>
+              </div>
+            ))}
+
+            <div className="flex justify-between">
+              <p>Tax (28%)</p>
+              <p>${taxes}</p>
+            </div>
+
+            <div className="flex justify-between border-t border-gray-500 pt-2 text-lg">
+              <p>Subtotal (exluding taxes)</p>
+              <p>${subtotal}</p>
+            </div>
+            <div className="flex justify-between border-t border-gray-500 pt-2 text-2xl font-semibold">
+              <p>Total</p>
+              <p>${subtotal + taxes}</p>
+            </div>
+            {/* You can add more details like shipping, discounts, etc., in a similar manner */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

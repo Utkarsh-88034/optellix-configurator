@@ -11,12 +11,13 @@ const MenuItem = ({
 }) => {
   const [openOptions, setOpenOptions] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState();
-  const { config, setConfig } = useContext(configContext);
+  const { config, setConfig, cost, setCost } = useContext(configContext);
   useEffect(() => {
     if (!selectedOptions) {
       setSelectedOptions(options[0]);
     }
   });
+
   return (
     <div>
       <div
@@ -46,6 +47,7 @@ const MenuItem = ({
                   onClick={() => {
                     setSelectedOptions(option);
                     setConfig({ ...config, [title]: option.name });
+                    setCost({ ...cost, [title]: option.price });
                     setCamPos(campos);
                   }}
                 >
@@ -68,6 +70,8 @@ const MenuItem = ({
                     onClick={() => {
                       setSelectedOptions(option);
                       setConfig({ ...config, [title]: option.name });
+                      setCost({ ...cost, [title]: option.price });
+
                       setCamPos(campos);
                     }}
                   >
@@ -84,7 +88,7 @@ const MenuItem = ({
                     </div>
                     <div className="min-w-[40px]">
                       <p className="text-lg font-light text-right">
-                        {option.price}
+                        ${option.price}
                       </p>
                     </div>
                   </div>
@@ -105,7 +109,7 @@ const MenuItem = ({
             </div>
             <div className="text-center flex gap-1 justify-center items-center mt-2">
               <p className="text-md">{selectedOptions?.name}</p>
-              <p className="text-md font-light">{selectedOptions?.price}</p>
+              <p className="text-md font-light">${selectedOptions?.price}</p>
             </div>
           </>
         )}
