@@ -1,0 +1,162 @@
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { configContext } from "../Store/ConfigContext";
+import paint1 from "../assets/paint-red.png";
+import paint2 from "../assets/paint-silver.png";
+
+const FloatingWindow = ({ selectedMenu }) => {
+  const [selectedOptions, setSelectedOptions] = useState();
+  const { config, setConfig, cost, setCost } = useContext(configContext);
+
+  const availableCustomizations = {
+    "Wind Shield": [
+      {
+        name: "No Windshield",
+        price: "0",
+        description: "Open front, with no protection against wind and light",
+        included: true,
+        // icon: paint1,
+      },
+      {
+        name: "Long Windshiled",
+        price: "1000",
+        description:
+          "Tinted windshiled to protect from wind and clear view of the instrument cluster",
+        included: false,
+        // icon: paint1,
+      },
+    ],
+    Seat: [
+      {
+        name: "Driver Only",
+        price: "0",
+        description:
+          "Only driver seat with fiber panel on the rear. Gives sporty look.",
+        included: true,
+        // icon: paint1,
+      },
+      {
+        name: "Passenger Seat",
+        price: "3000",
+        description: "Passenger seat made of premium vegan leather.",
+        included: false,
+        // icon: paint1,
+      },
+    ],
+    "Mud Guard": [
+      {
+        name: "Small Mud Guard",
+        price: "0",
+        description: "Shorter guard gives sportier look.",
+        included: true,
+        icon: paint1,
+      },
+      {
+        name: "Long Mud Guard",
+        price: "3000",
+        description: "Longer guard for more protection.",
+        included: false,
+        icon: paint2,
+      },
+    ],
+    Exhaust: [
+      {
+        name: "Single Side Dual Exhaust System",
+        price: "0",
+        description: "Textured exhaust sound peaking at 70db",
+        included: true,
+        // icon: paint1,
+      },
+      {
+        name: "Both Side Dual Exhaust System",
+        price: "1200",
+        description: "Deep muffled exhaust sound peaking at 90db",
+        included: false,
+        // icon: paint1,
+      },
+    ],
+    "Handle Bar": [
+      {
+        name: "Normal Height",
+        price: "0",
+        description: "Standard height included in the design.",
+        included: true,
+      },
+      {
+        name: "High Bar",
+        price: "1000",
+        description:
+          "Longer handlebar height. More comfortable for people with shorter arms",
+        included: false,
+      },
+    ],
+    Paint: [
+      {
+        name: "Metallic Red",
+        price: "0",
+        description: "",
+        included: true,
+        icon: paint1,
+      },
+      {
+        name: "LA Silver",
+        price: "1000",
+        description: "",
+        included: false,
+        icon: paint2,
+      },
+    ],
+  };
+
+  const options = useMemo(() => {
+    return availableCustomizations[selectedMenu];
+  }, [selectedMenu]);
+  useEffect(() => {
+    if (selectedMenu !== "none") {
+      const defaultVal = config[selectedMenu];
+      const defaultOption = options.filter((option) => {
+        return option.name === defaultVal;
+      });
+      console.log(defaultOption[0]);
+
+      setSelectedOptions(defaultOption[0]);
+    }
+  }, [options]);
+
+  return (
+    <>
+      {selectedMenu !== "none" && (
+        <div className="absolute w-[400px] max-h-[500px] bg-white right-[10%] top-[10%] rounded-2xl text-black p-2 flex flex-col items-center gap-5 h-max shadow-2xl">
+          {options.map((option) => (
+            <div
+              className={`h-40 w-[100%] border rounded-[12px] p-4 flex items-center justify-between transition-all gap-3 duration-75 cursor-pointer ${
+                !(selectedOptions?.name === option.name) &&
+                "hover:border-[1px] hover:border-black/50 transition-all duration-75"
+              } ${
+                selectedOptions?.name === option.name &&
+                "border-black border-[3px] hover:border-[3px]"
+              }`}
+              onClick={() => {
+                setSelectedOptions(option);
+                setConfig({ ...config, [selectedMenu]: option.name });
+                setCost({ ...cost, [selectedMenu]: option.price });
+              }}
+            >
+              <div className="h-full relative">
+                <p className="text-lg font-semibold mb-1">{option.name}</p>
+                <p className=" text-sm font-extralight">{option.description}</p>
+                <p className="absolute bottom-0 w-max text-sm font-light">
+                  {option.included ? "Included" : "Not Included"}
+                </p>
+              </div>
+              <div className="min-w-[40px]">
+                <p className="text-lg font-light text-right">${option.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+};
+
+export default FloatingWindow;

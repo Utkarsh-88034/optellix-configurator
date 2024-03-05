@@ -118,7 +118,7 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
   }, [cost]);
 
   const taxes = useMemo(() => {
-    return (subtotal * 28) / 100;
+    return (subtotal * 31) / 100;
   }, [cost]);
 
   return (
@@ -261,7 +261,7 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
             ))}
 
             <div className="flex justify-between">
-              <p>Tax (28%)</p>
+              <p>Tax (31%)</p>
               <p>${taxes}</p>
             </div>
 

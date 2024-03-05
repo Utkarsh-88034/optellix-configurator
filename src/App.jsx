@@ -28,58 +28,19 @@ import { Stage_Props } from "./assets/Stage";
 import { Engine_Guard } from "./assets/Engine_Guard";
 import { Lights } from "./assets/Lights";
 import { Bloom } from "@react-three/postprocessing";
-import { BlurPass, Resizer, KernelSize, Resolution } from 'postprocessing'
+import { BlurPass, Resizer, KernelSize, Resolution } from "postprocessing";
+import FloatingMenu from "./Components/FloatingMenu";
+import FloatingWindow from "./Components/FloatingWindow";
 
 function App() {
-  const [parentClass, setParentClass] = useState("style");
   const [camPos, setCamPos] = useState();
   const [close, setClose] = useState(true);
   const { config, setConfig } = useContext(configContext);
-  const controls = useRef("");
+  const [selectedOption, setSelectedOption] = useState("none");
+
   return (
     <>
       <div className="w-screen h-screen overflow-hidden flex">
-        <svg
-          width="40px"
-          height="40px"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          stroke="#ffffff"
-          className="absolute right-2 sm:hidden cursor-pointer z-10"
-          onClick={() => {
-            setClose(!close);
-          }}
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            {" "}
-            <path
-              d="M20 7L4 7"
-              stroke="#ffffff"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            ></path>{" "}
-            <path
-              opacity="0.5"
-              d="M20 12L4 12"
-              stroke="#ffffff"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            ></path>{" "}
-            <path
-              d="M20 17L4 17"
-              stroke="#ffffff"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            ></path>{" "}
-          </g>
-        </svg>
         <Canvas className="h-full w-[75%]" shadows="soft">
           {/* <pointLight
             position={[-1.1, 1, 0.16]}
@@ -107,8 +68,8 @@ function App() {
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
 
-            <Stage_Props position={[0,-0.58,0]}/>
-            <Lights/>
+            <Stage_Props position={[0, -0.58, 0]} />
+            <Lights />
             <Bloom
               intensity={1.0} // The bloom intensity.
               blurPass={undefined} // A blur pass.
@@ -119,7 +80,6 @@ function App() {
               resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
               resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
             />
-
 
             <Stage environment={null}>
               <Engine_Guard />
@@ -146,12 +106,12 @@ function App() {
             <CameraControl position={camPos} />
           </Suspense>
         </Canvas>
-        {/* <VerticalSideBar setParentClass={setParentClass} /> */}
-        <Sidebar
-          parentClass={parentClass}
+
+        <FloatingMenu
           setCamPos={setCamPos}
-          close={close}
+          setSelectedMenu={setSelectedOption}
         />
+        {close && <FloatingWindow selectedMenu={selectedOption} />}
       </div>
     </>
   );
