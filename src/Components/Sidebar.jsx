@@ -6,7 +6,7 @@ import paint2 from "../assets/paint-silver.png";
 import { configContext } from "../Store/ConfigContext";
 
 const Sidebar = ({ parentClass, setCamPos, close }) => {
-  const [selectedMenu, setSelectedMenu] = useState("Paint");
+  const [openPanel, setOpenPanel] = useState(false);
   const windShieldOptions = [
     {
       name: "No Windshield",
@@ -199,7 +199,11 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
         setCamPos={setCamPos}
         campos={new Vector3(-0.71, 0.27, 1.06)}
       />
-      <div className="h-max bg-black w-full sticky bottom-[-370px] text-white flex items-center p-4 justify-between flex-col gap-10">
+      <div
+        className={`h-max bg-black w-full sticky  text-white flex items-center p-4 justify-between flex-col gap-10 transition-all duration-300 ${
+          openPanel ? "bottom-0" : "bottom-[-370px]"
+        }`}
+      >
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-3">
             <p className="text-2xl font-semibold">
@@ -222,6 +226,12 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
             viewBox="0 0 511.735 511.735"
             xml:space="preserve"
             stroke="#ffffff"
+            className={`${
+              openPanel && "rotate-180"
+            } cursor-pointer transition-all duration-300`}
+            onClick={() => {
+              setOpenPanel(!openPanel);
+            }}
           >
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g
