@@ -13,7 +13,7 @@ export const ConfigContextProvider = ({ children }) => {
     Size: "Medium",
   });
   const [cost, setCost] = useState({
-    Base: 34000,
+    Base: 35000,
     "Wind Shield": 0,
     Seat: 0,
     "Handle Bar": 0,
