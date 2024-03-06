@@ -5,8 +5,7 @@ import paint1 from "../assets/paint-red.png";
 import paint2 from "../assets/paint-silver.png";
 import { configContext } from "../Store/ConfigContext";
 
-const Sidebar = ({ show, setCamPos, close }) => {
-  console.log(show);
+const Sidebar = ({ setCamPos, close }) => {
   const [openPanel, setOpenPanel] = useState(false);
   const windShieldOptions = [
     {
@@ -17,7 +16,7 @@ const Sidebar = ({ show, setCamPos, close }) => {
       // icon: paint1,
     },
     {
-      name: "Long Windshiled",
+      name: "Long Windshield",
       price: "1000",
       description:
         "Tinted windshiled to protect from wind and clear view of the instrument cluster",
@@ -178,7 +177,7 @@ const Sidebar = ({ show, setCamPos, close }) => {
       />
       <MenuItem
         options={windShieldOptions}
-        title="Windshield"
+        title="Wind Shield"
         setCamPos={setCamPos}
         campos={new Vector3(0, 0.6, 1)}
       />

@@ -40,11 +40,50 @@ function App() {
   const [selectedOption, setSelectedOption] = useState("none");
   const [openPanel, setOpenPanel] = useState(false);
 
-  console.log(config);
-
   return (
     <>
       <div className="w-screen h-screen overflow-hidden flex">
+        <svg
+          width="40px"
+          height="40px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#ffffff"
+          className="absolute right-2 lg:hidden cursor-pointer z-10"
+          onClick={() => {
+            setOpenPanel(!openPanel);
+          }}
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <path
+              d="M20 7L4 7"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            ></path>{" "}
+            <path
+              opacity="0.5"
+              d="M20 12L4 12"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            ></path>{" "}
+            <path
+              d="M20 17L4 17"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            ></path>{" "}
+          </g>
+        </svg>
         <Canvas className="h-full w-[75%]" shadows="soft">
           {/* <pointLight
             position={[-1.1, 1, 0.16]}
@@ -117,8 +156,8 @@ function App() {
           selectedMenu={selectedOption}
           setOpenPanel={setOpenPanel}
         />
-        <Sidebar close={openPanel} />
-        {close && <FloatingWindow selectedMenu={selectedOption} />}
+        <Sidebar close={openPanel} setCamPos={setCamPos} />
+        {!openPanel && <FloatingWindow selectedMenu={selectedOption} />}
       </div>
     </>
   );

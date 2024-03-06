@@ -26,7 +26,7 @@ const FloatingMenu = ({
   }, [collapse]);
   return (
     <div
-      className={` translate-y-[-50%] sm:flex-row flex-col absolute bottom-[10%] left-[50%] w-max translate-x-[-50%] h-32 flex items-center justify-evenly transition-all duration-150 gap-10 `}
+      className={`invisible lg:visible translate-y-[-50%] sm:flex-row flex-col absolute bottom-[10%] left-[50%] w-max translate-x-[-50%] h-32 flex items-center justify-evenly transition-all duration-150 gap-10 `}
     >
       {!collapse && (
         <>

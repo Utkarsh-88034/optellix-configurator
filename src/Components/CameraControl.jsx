@@ -16,7 +16,7 @@ const CameraControl = ({ position }) => {
       camera.position.lerp(pos, 0.05);
     }
   });
-  console.log(camera.position);
+
   return (
     <OrbitControls
       makeDefault
