@@ -19,6 +19,10 @@ const CameraControl = ({ position }) => {
 
   return (
     <OrbitControls
+      // minPolarAngle={Math.PI / 6} // Limits the lowest vertical angle
+      maxPolarAngle={Math.PI / 2} // Limits the highest vertical angle
+      minDistance={1} // Minimum zoom distance
+      maxDistance={3} // Maximum zoom distance
       makeDefault
       ref={orbitRef}
       onStart={() => {
