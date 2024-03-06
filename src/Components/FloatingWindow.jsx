@@ -137,10 +137,43 @@ const FloatingWindow = ({ selectedMenu }) => {
     }
   }, [options]);
 
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+
+  const handleMouseDown = (event) => {
+    setIsDragging(true);
+    const boundingRect = event.currentTarget.getBoundingClientRect();
+    setDragOffset({
+      x: event.clientX - boundingRect.left,
+      y: event.clientY - boundingRect.top,
+    });
+  };
+
+  const handleMouseMove = (event) => {
+    if (!isDragging) return;
+    const newX = event.clientX - dragOffset.x;
+    const newY = event.clientY - dragOffset.y;
+    event.currentTarget.style.left = `${newX}px`;
+    event.currentTarget.style.top = `${newY}px`;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
   return (
     <>
       {selectedMenu !== "none" && (
-        <div className="absolute w-[400px] max-h-[500px] bg-white right-[10%] top-[10%] rounded-2xl text-black p-3 flex flex-col items-center gap-5 h-max shadow-2xl">
+        <div
+          className="absolute w-[400px] max-h-[500px] bg-white right-[10%] top-[10%] rounded-2xl text-black p-3 flex flex-col items-center gap-5 h-max shadow-2xl"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          style={{
+            cursor: isDragging ? "grabbing" : "grab",
+            position: "absolute",
+          }}
+        >
           <div className="w-full flex items-center gap-2">
             <img src={iconMap[selectedMenu]} alt="" />
             <p className="text-2xl ">{selectedMenu}</p>
