@@ -38,6 +38,7 @@ function App() {
   const [close, setClose] = useState(true);
   const { config, setConfig } = useContext(configContext);
   const [selectedOption, setSelectedOption] = useState("none");
+  const [openPanel, setOpenPanel] = useState(false);
 
   console.log(config);
 
@@ -88,7 +89,7 @@ function App() {
               <Engine_Guard />
               {config.Paint == "Metallic Red" && <Base />}
               {config.Paint == "LA Silver" && <Base_grey />}
-              {config.Windshield != "No Windshield" && <WindShield />}
+              {config["Wind Shield"] != "No Windshield" && <WindShield />}
 
               {config.Seat == "Driver Only" && <NoSeat />}
               {config.Seat == "Passenger Seat" && <Seat />}
@@ -114,7 +115,9 @@ function App() {
           setCamPos={setCamPos}
           setSelectedMenu={setSelectedOption}
           selectedMenu={selectedOption}
+          setOpenPanel={setOpenPanel}
         />
+        <Sidebar close={openPanel} />
         {close && <FloatingWindow selectedMenu={selectedOption} />}
       </div>
     </>

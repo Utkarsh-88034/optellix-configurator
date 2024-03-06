@@ -5,7 +5,8 @@ import paint1 from "../assets/paint-red.png";
 import paint2 from "../assets/paint-silver.png";
 import { configContext } from "../Store/ConfigContext";
 
-const Sidebar = ({ parentClass, setCamPos, close }) => {
+const Sidebar = ({ show, setCamPos, close }) => {
+  console.log(show);
   const [openPanel, setOpenPanel] = useState(false);
   const windShieldOptions = [
     {
@@ -123,9 +124,9 @@ const Sidebar = ({ parentClass, setCamPos, close }) => {
 
   return (
     <div
-      className={` sm:w-[55%] sm:static absolute w-full sm:max-w-[400px] min-w-[320px] h-screen scroll-sm bg-white overflow-y-scroll  transition-all duration-150 ${
-        close ? "left-[-100%]" : "left-0"
-      }`}
+      className={` sm:w-[55%]  absolute w-full sm:max-w-[400px] min-w-[320px] h-screen scroll-sm bg-white overflow-y-scroll  transition-all duration-150 ${
+        close ? "right-0" : "-right-full"
+      } `}
     >
       <div className=" h-[250px] bg-black w-full flex flex-col justify-between p-4">
         <div className="flex text-white items-center gap-2">

@@ -4,7 +4,7 @@ export const configContext = createContext({});
 
 export const ConfigContextProvider = ({ children }) => {
   const [config, setConfig] = useState({
-    Windshield: "No Windshield",
+    "Wind Shield": "No Windshield",
     Seat: "No Passenger Seat",
     "Handle Bar": "Normal Height",
     Exhaust: "Single Side Dual Exhaust System",

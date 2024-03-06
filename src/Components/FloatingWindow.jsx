@@ -23,7 +23,7 @@ const FloatingWindow = ({ selectedMenu }) => {
         // icon: paint1,
       },
       {
-        name: "Long Windshiled",
+        name: "Long Windshield",
         price: "1000",
         description:
           "Tinted windshiled to protect from wind and clear view of the instrument cluster",
