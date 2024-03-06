@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Vector3 } from "three";
 
 const FloatingMenuItem = ({
   menuIcon,
@@ -6,13 +7,23 @@ const FloatingMenuItem = ({
   campos,
   setCamPos,
   setSelectedMenu,
+  selectedMenu,
 }) => {
   return (
     <div
-      className="h-28 w-28 bg-[#bdbdbdce] rounded-2xl border-[#666666]  shadow-2xl cursor-pointer hover:scale-110 transition-all duration-100 flex flex-col items-center justify-center gap-2 p-1"
+      className={`h-28 w-28  rounded-2xl border-[#666666]  shadow-2xl cursor-pointer hover:scale-110 transition-all duration-300 flex flex-col items-center justify-center gap-2 p-1 ${
+        selectedMenu == title
+          ? "scale-110 bg-[#d6d6d6ce]"
+          : "scale-1 bg-[#bdbdbdce]"
+      }`}
       onClick={() => {
-        setCamPos(campos);
-        setSelectedMenu(title);
+        if (selectedMenu == title) {
+          setSelectedMenu("none");
+          setCamPos(new Vector3(0, 0, 1.5));
+        } else {
+          setSelectedMenu(title);
+          setCamPos(campos);
+        }
       }}
     >
       <img src={menuIcon} className="h-12 aspect-square object-contain" />

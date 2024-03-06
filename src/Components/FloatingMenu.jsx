@@ -8,7 +8,7 @@ import seat from "../assets/seat.png";
 import windshield from "../assets/windshield.png";
 import { Vector3 } from "three";
 
-const FloatingMenu = ({ setCamPos, setSelectedMenu }) => {
+const FloatingMenu = ({ setCamPos, setSelectedMenu, selectedMenu }) => {
   return (
     <div className="absolute bottom-[10%] left-[50%] w-max translate-x-[-50%] h-32 flex items-center justify-evenly gap-10">
       <FloatingMenuItem
@@ -17,13 +17,15 @@ const FloatingMenu = ({ setCamPos, setSelectedMenu }) => {
         campos={new Vector3(1.68, 0.12, -1.66)}
         setCamPos={setCamPos}
         setSelectedMenu={setSelectedMenu}
+        selectedMenu={selectedMenu}
       />
       <FloatingMenuItem
         menuIcon={paint}
         title={"Paint"}
-        campos={new Vector3(1.68, 0.12, -1.66)}
+        campos={new Vector3(2, 0, 0)}
         setCamPos={setCamPos}
         setSelectedMenu={setSelectedMenu}
+        selectedMenu={selectedMenu}
       />
       <FloatingMenuItem
         menuIcon={windshield}
@@ -31,6 +33,7 @@ const FloatingMenu = ({ setCamPos, setSelectedMenu }) => {
         campos={new Vector3(0, 0.6, 1)}
         setCamPos={setCamPos}
         setSelectedMenu={setSelectedMenu}
+        selectedMenu={selectedMenu}
       />
       <FloatingMenuItem
         menuIcon={seat}
@@ -38,6 +41,7 @@ const FloatingMenu = ({ setCamPos, setSelectedMenu }) => {
         campos={new Vector3(0.6, 0.95, -0.86)}
         setCamPos={setCamPos}
         setSelectedMenu={setSelectedMenu}
+        selectedMenu={selectedMenu}
       />
       <FloatingMenuItem
         menuIcon={mudguard}
@@ -45,6 +49,7 @@ const FloatingMenu = ({ setCamPos, setSelectedMenu }) => {
         campos={new Vector3(-0.71, 0.27, 1.06)}
         setCamPos={setCamPos}
         setSelectedMenu={setSelectedMenu}
+        selectedMenu={selectedMenu}
       />
       <FloatingMenuItem
         menuIcon={handle}
@@ -52,6 +57,7 @@ const FloatingMenu = ({ setCamPos, setSelectedMenu }) => {
         campos={new Vector3(0.38, 0.69, 0.93)}
         setCamPos={setCamPos}
         setSelectedMenu={setSelectedMenu}
+        selectedMenu={selectedMenu}
       />
     </div>
   );

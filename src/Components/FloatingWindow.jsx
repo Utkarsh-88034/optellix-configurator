@@ -2,6 +2,12 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import { configContext } from "../Store/ConfigContext";
 import paint1 from "../assets/paint-red.png";
 import paint2 from "../assets/paint-silver.png";
+import exhaust from "../assets/exhaust.png";
+import paint from "../assets/paint.png";
+import handle from "../assets/handle.png";
+import mudguard from "../assets/mudguard.png";
+import seat from "../assets/seat.png";
+import windshield from "../assets/windshield.png";
 
 const FloatingWindow = ({ selectedMenu }) => {
   const [selectedOptions, setSelectedOptions] = useState();
@@ -107,6 +113,15 @@ const FloatingWindow = ({ selectedMenu }) => {
     ],
   };
 
+  const iconMap = {
+    "Wind Shield": windshield,
+    Seat: seat,
+    Paint: paint,
+    "Handle Bar": handle,
+    Exhaust: exhaust,
+    "Mud Guard": mudguard,
+  };
+
   const options = useMemo(() => {
     return availableCustomizations[selectedMenu];
   }, [selectedMenu]);
@@ -125,7 +140,11 @@ const FloatingWindow = ({ selectedMenu }) => {
   return (
     <>
       {selectedMenu !== "none" && (
-        <div className="absolute w-[400px] max-h-[500px] bg-white right-[10%] top-[10%] rounded-2xl text-black p-2 flex flex-col items-center gap-5 h-max shadow-2xl">
+        <div className="absolute w-[400px] max-h-[500px] bg-white right-[10%] top-[10%] rounded-2xl text-black p-3 flex flex-col items-center gap-5 h-max shadow-2xl">
+          <div className="w-full flex items-center gap-2">
+            <img src={iconMap[selectedMenu]} alt="" />
+            <p className="text-2xl ">{selectedMenu}</p>
+          </div>
           {options.map((option) => (
             <div
               className={`h-40 w-[100%] border rounded-[12px] p-4 flex items-center justify-between transition-all gap-3 duration-75 cursor-pointer ${

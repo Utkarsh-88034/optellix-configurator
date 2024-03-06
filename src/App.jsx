@@ -3,6 +3,7 @@ import "./App.css";
 import { Canvas, useLoader } from "@react-three/fiber";
 import {
   Environment,
+  Loader,
   OrbitControls,
   PivotControls,
   Stage,
@@ -37,6 +38,8 @@ function App() {
   const [close, setClose] = useState(true);
   const { config, setConfig } = useContext(configContext);
   const [selectedOption, setSelectedOption] = useState("none");
+
+  console.log(config);
 
   return (
     <>
@@ -106,10 +109,11 @@ function App() {
             <CameraControl position={camPos} />
           </Suspense>
         </Canvas>
-
+        <Loader />
         <FloatingMenu
           setCamPos={setCamPos}
           setSelectedMenu={setSelectedOption}
+          selectedMenu={selectedOption}
         />
         {close && <FloatingWindow selectedMenu={selectedOption} />}
       </div>
