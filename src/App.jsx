@@ -5,6 +5,7 @@ import {
   Environment,
   OrbitControls,
   PivotControls,
+  SpotLight,
   Stage,
 } from "@react-three/drei";
 import Sidebar from "./Components/Sidebar";
@@ -96,9 +97,8 @@ function App() {
           <Suspense>
             <Environment
               background={false}
-              // can be true, false or "only" (which only sets the background) (default: false)
-              files="studio_small_01_1k.exr"
-              intensity={0.1}
+              files="Envrinment_background.exr"
+              intensity={1}
               path="/"
             />
 
@@ -142,10 +142,17 @@ function App() {
                 config.Paint == "Metallic Red" && <LongMudguard />}
               {config["Mud Guard"] == "Long Mud Guard" &&
                 config.Paint == "LA Silver" && <LongMudguard_grey />}
+            
             </Stage>
+            {/* <PivotControls>
+              <SpotLight  distance={5} angle={0.15}
+  attenuation={5}
+  anglePower={5}    />
+            </PivotControls> */}
             <CameraControl position={camPos} />
           </Suspense>
         </Canvas>
+        
         {/* <VerticalSideBar setParentClass={setParentClass} /> */}
         <Sidebar
           parentClass={parentClass}
