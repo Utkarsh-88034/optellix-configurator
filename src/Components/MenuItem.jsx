@@ -12,11 +12,15 @@ const MenuItem = ({
   const [openOptions, setOpenOptions] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState();
   const { config, setConfig, cost, setCost } = useContext(configContext);
+
   useEffect(() => {
-    if (!selectedOptions) {
-      setSelectedOptions(options[0]);
-    }
-  });
+    const defaultVal = config[title];
+    const defaultOption = options.filter((option) => {
+      return option.name === defaultVal;
+    });
+
+    setSelectedOptions(defaultOption[0]);
+  }, [config]);
 
   return (
     <div>
