@@ -98,7 +98,7 @@ function App() {
             <Environment
               background={false}
               files="Envrinment_background.exr"
-              intensity={1}
+              intensity={0.1}
               path="/"
             />
 
