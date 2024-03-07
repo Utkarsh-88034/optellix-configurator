@@ -10,7 +10,8 @@ export function Stage_Props(props) {
   const { nodes, materials } = useGLTF('/stage.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Base.geometry} material={materials['Material.001']} position={[0, -0.006, 0.152]} scale={[9.202, 4.791, 9.202]} />
+      <mesh geometry={nodes.stage_1.geometry} material={materials.Emission} />
+      <mesh geometry={nodes.stage_2.geometry} material={materials.White} />
     </group>
   )
 }
