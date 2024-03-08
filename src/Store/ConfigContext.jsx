@@ -4,8 +4,8 @@ export const configContext = createContext({});
 
 export const ConfigContextProvider = ({ children }) => {
   const [config, setConfig] = useState({
-    Windshield: "No Windshield",
-    Seat: "No Passenger Seat",
+    "Wind Shield": "No Windshield",
+    Seat: "Driver Only",
     "Handle Bar": "Normal Height",
     Exhaust: "Single Side Dual Exhaust System",
     "Mud Guard": "Small Mud Guard",
@@ -13,8 +13,8 @@ export const ConfigContextProvider = ({ children }) => {
     Size: "Medium",
   });
   const [cost, setCost] = useState({
-    Base: 34000,
-    Windshield: 0,
+    Base: 35000,
+    "Wind Shield": 0,
     Seat: 0,
     "Handle Bar": 0,
     Exhaust: 0,

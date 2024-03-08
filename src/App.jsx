@@ -3,6 +3,7 @@ import "./App.css";
 import { Canvas, useLoader } from "@react-three/fiber";
 import {
   Environment,
+  Loader,
   OrbitControls,
   PivotControls,
   SpotLight,
@@ -29,14 +30,17 @@ import { Stage_Props } from "./assets/Stage";
 import { Engine_Guard } from "./assets/Engine_Guard";
 import { Lights } from "./assets/Lights";
 import { Bloom } from "@react-three/postprocessing";
-import { BlurPass, Resizer, KernelSize, Resolution } from 'postprocessing'
+import { BlurPass, Resizer, KernelSize, Resolution } from "postprocessing";
+import FloatingMenu from "./Components/FloatingMenu";
+import FloatingWindow from "./Components/FloatingWindow";
 
 function App() {
-  const [parentClass, setParentClass] = useState("style");
   const [camPos, setCamPos] = useState();
   const [close, setClose] = useState(true);
   const { config, setConfig } = useContext(configContext);
-  const controls = useRef("");
+  const [selectedOption, setSelectedOption] = useState("none");
+  const [openPanel, setOpenPanel] = useState(false);
+
   return (
     <>
       <div className="w-screen h-screen overflow-hidden flex">
@@ -47,9 +51,9 @@ function App() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           stroke="#ffffff"
-          className="absolute right-2 sm:hidden cursor-pointer z-10"
+          className="absolute right-2 lg:hidden cursor-pointer z-10"
           onClick={() => {
-            setClose(!close);
+            setOpenPanel(!openPanel);
           }}
         >
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -107,8 +111,8 @@ function App() {
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
 
-            <Stage_Props position={[0,-0.58,0]}/>
-            <Lights/>
+            <Stage_Props position={[0, -0.58, 0]} />
+            <Lights />
             <Bloom
               intensity={1.0} // The bloom intensity.
               blurPass={undefined} // A blur pass.
@@ -120,12 +124,11 @@ function App() {
               resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
             />
 
-
             <Stage environment={null}>
               <Engine_Guard />
               {config.Paint == "Metallic Red" && <Base />}
               {config.Paint == "LA Silver" && <Base_grey />}
-              {config.Windshield != "No Windshield" && <WindShield />}
+              {config["Wind Shield"] != "No Windshield" && <WindShield />}
 
               {config.Seat == "Driver Only" && <NoSeat />}
               {config.Seat == "Passenger Seat" && <Seat />}
@@ -152,13 +155,17 @@ function App() {
             <CameraControl position={camPos} />
           </Suspense>
         </Canvas>
-        
-        {/* <VerticalSideBar setParentClass={setParentClass} /> */}
-        <Sidebar
-          parentClass={parentClass}
+
+        <Loader />
+        <FloatingMenu
+
           setCamPos={setCamPos}
-          close={close}
+          setSelectedMenu={setSelectedOption}
+          selectedMenu={selectedOption}
+          setOpenPanel={setOpenPanel}
         />
+        <Sidebar close={openPanel} setCamPos={setCamPos} />
+        {!openPanel && <FloatingWindow selectedMenu={selectedOption} />}
       </div>
     </>
   );
