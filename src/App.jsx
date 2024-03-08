@@ -130,7 +130,7 @@ function App() {
               {config.Paint == "LA Silver" && <Base_grey />}
               {config["Wind Shield"] != "No Windshield" && <WindShield />}
 
-              {config.Seat == "Driver Only" && <NoSeat />}
+              {/* {config.Seat == "Driver Only" && <NoSeat />} */}
               {config.Seat == "Passenger Seat" && <Seat />}
               {config["Handle Bar"] == "Normal Height" && <Handlebar_Normal />}
               {config["Handle Bar"] == "High Bar" && <Handlebar_Long />}
@@ -145,7 +145,6 @@ function App() {
                 config.Paint == "Metallic Red" && <LongMudguard />}
               {config["Mud Guard"] == "Long Mud Guard" &&
                 config.Paint == "LA Silver" && <LongMudguard_grey />}
-            
             </Stage>
             {/* <PivotControls>
               <SpotLight  distance={5} angle={0.15}
@@ -158,7 +157,6 @@ function App() {
 
         <Loader />
         <FloatingMenu
-
           setCamPos={setCamPos}
           setSelectedMenu={setSelectedOption}
           selectedMenu={selectedOption}
