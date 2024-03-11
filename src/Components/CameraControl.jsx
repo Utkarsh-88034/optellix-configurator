@@ -1,9 +1,10 @@
-import { OrbitControls } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
+import { Effects, OrbitControls } from "@react-three/drei";
+import { extend, useFrame, useThree } from "@react-three/fiber";
 import React, { useEffect, useRef, useState } from "react";
+import { ACESFilmicToneMapping } from "three";
 
 const CameraControl = ({ position }) => {
-  const { camera } = useThree();
+  const { scene, camera, gl } = useThree();
   const orbitRef = useRef();
   const [updateCam, setUpdateCam] = useState(true);
   const [pos, setPos] = useState(position);
@@ -17,23 +18,29 @@ const CameraControl = ({ position }) => {
     }
   });
 
-  return (
-    <OrbitControls
-      // minPolarAngle={Math.PI / 6} // Limits the lowest vertical angle
-      maxPolarAngle={Math.PI / 2} // Limits the highest vertical angle
-      minDistance={1} // Minimum zoom distance
-      maxDistance={3} // Maximum zoom distance
-      makeDefault
-      ref={orbitRef}
-      onStart={() => {
-        setUpdateCam(false);
-      }}
-      onEnd={() => {
-        setUpdateCam(true);
+  gl.toneMapping = ACESFilmicToneMapping;
+  gl.toneMappingExposure = 1.2;
+  gl.outputColorSpace = "srgb";
+  camera.fov = 12;
 
-        setPos(orbitRef.current.object.position);
-      }}
-    />
+  return (
+    <>
+      <OrbitControls
+        // minPolarAngle={Math.PI / 6} // Limits the lowest vertical angle
+        maxPolarAngle={Math.PI / 2} // Limits the highest vertical angle
+        // enableZoom={false}
+        makeDefault
+        ref={orbitRef}
+        onStart={() => {
+          setUpdateCam(false);
+        }}
+        onEnd={() => {
+          setUpdateCam(true);
+
+          setPos(orbitRef.current.object.position);
+        }}
+      />
+    </>
   );
 };
 

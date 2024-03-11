@@ -6,11 +6,15 @@ Files: Stage.glb [2.46MB] > C:\Users\User\Desktop\public\Stage-transformed.glb [
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import { BackSide, FrontSide } from "three";
 
 export function Stage_Props(props) {
   const { nodes, materials } = useGLTF("/Stage-transformed.glb");
+  console.log(materials);
+  materials.White.side = FrontSide;
+  materials.Emission.side = FrontSide;
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={1}>
       <mesh geometry={nodes.stage_1.geometry} material={materials.Emission} />
       <mesh geometry={nodes.stage_2.geometry} material={materials.White} />
     </group>
