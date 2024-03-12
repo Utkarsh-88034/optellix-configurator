@@ -30,6 +30,9 @@ const CameraControl = ({ position }) => {
         maxPolarAngle={Math.PI / 2} // Limits the highest vertical angle
         // enableZoom={false}
         makeDefault
+        enableZoom={false}
+        enablePan={false}
+        ena
         ref={orbitRef}
         onStart={() => {
           setUpdateCam(false);
