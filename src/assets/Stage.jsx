@@ -15,7 +15,7 @@ export function Stage_Props(props) {
   materials.Emission.side = FrontSide;
   console.log(window.innerWidth);
   return (
-    <group {...props} dispose={null} scale={1}>
+    <group {...props} dispose={null} scale={window.innerWidth < 1000 ? 2 : 1}>
       <mesh geometry={nodes.stage_1.geometry} material={materials.Emission} />
       <mesh geometry={nodes.stage_2.geometry} material={materials.White} />
     </group>
