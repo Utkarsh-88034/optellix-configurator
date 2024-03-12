@@ -89,14 +89,11 @@ function App() {
                 path="/"
                 frames={Infinity}
               >
-                <Lightformer />
               </Environment>
-              <Engine_Guard />
+              {/* <Engine_Guard /> */}
               {config.Paint == "Metallic Red" && <Base />}
               {config.Paint == "LA Silver" && <Base_grey></Base_grey>}
               {config["Wind Shield"] != "No Windshield" && <WindShield />}
-
-              {/* {config.Seat == "Driver Only" && <NoSeat />} */}
               {config.Seat == "Passenger Seat" && <Seat />}
               {config["Handle Bar"] == "Normal Height" && <Handlebar_Normal />}
               {config["Handle Bar"] == "High Bar" && <Handlebar_Long />}

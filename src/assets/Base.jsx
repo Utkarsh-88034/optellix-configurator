@@ -13,6 +13,7 @@ export function Base(props) {
       <mesh geometry={nodes.NoSeat.geometry} material={materials['Plastics.002']} />
       <mesh geometry={nodes.Object_4.geometry} material={materials['Dark_Metal.002']} />
       <mesh geometry={nodes.Object_5.geometry} material={materials['Metal.002']} />
+      <mesh geometry={nodes.EngineGuard.geometry} material={materials['Copper.002']} />
       <mesh geometry={nodes.Object_7.geometry} material={materials['Black.002']} />
       <mesh geometry={nodes.Object_98.geometry} material={materials['Dark_Metal.003']} />
       <mesh geometry={nodes.Object_79.geometry} material={materials['Tyres.002']} />
@@ -23,6 +24,7 @@ export function Base(props) {
       <mesh geometry={nodes.Object_16.geometry} material={materials['Black.002']} />
       <mesh geometry={nodes.Object_19.geometry} material={materials['Dark_Metal.002']} />
       <mesh geometry={nodes.Object_20.geometry} material={materials['Metal.002']} />
+      <mesh geometry={nodes.RollCage.geometry} material={materials['Plastics.002']} />
       <mesh geometry={nodes.Object_22.geometry} material={materials['material.001']} />
       <mesh geometry={nodes.Object_24.geometry} material={materials['Dark_Metal.002']} />
       <mesh geometry={nodes.Object_25.geometry} material={materials['Shiny_Metal.001']} />
@@ -32,7 +34,7 @@ export function Base(props) {
       <mesh geometry={nodes.Object_90.geometry} material={materials['Tail_Light_Reflectors.001']} />
       <mesh geometry={nodes.Object_27.geometry} material={materials['Black.002']} />
       <mesh geometry={nodes.Object_29.geometry} material={materials['Black.002']} />
-      <mesh geometry={nodes.Object_30.geometry} material={materials['Bronze.002']} />
+      <mesh geometry={nodes.Object_30.geometry} material={materials['Copper.002']} />
       <mesh geometry={nodes.Object_32.geometry} material={materials['Metal.002']} />
       <mesh geometry={nodes.Object_92.geometry} material={materials['Plastics.002']} />
       <mesh geometry={nodes.Object_93.geometry} material={materials['Seat.002']} />
@@ -63,9 +65,8 @@ export function Base(props) {
       <mesh geometry={nodes.Object_30001_1.geometry} material={materials.Emission} />
       <mesh geometry={nodes.Object_52.geometry} material={materials['Black.002']} />
       <mesh geometry={nodes.Object_53.geometry} material={materials['Metal.002']} />
-      <mesh geometry={nodes.Object_57.geometry} material={materials['Metal.002']} />
-      <mesh geometry={nodes.Object_36001.geometry} material={materials['Exhaust.002']} />
-      <mesh geometry={nodes.Object_36001_1.geometry} material={materials['Black.002']} />
+      <mesh geometry={nodes.Object_56.geometry} material={materials['Black.002']} />
+      <mesh geometry={nodes.Object_56001.geometry} material={materials['Exhaust.002']} />
       <mesh geometry={nodes.Object_95.geometry} material={materials['White.002']} />
       <mesh geometry={nodes.Object_96.geometry} material={materials['Black.002']} />
     </group>
