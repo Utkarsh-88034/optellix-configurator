@@ -33,7 +33,13 @@ const FloatingMenu = ({
           <FloatingMenuItem
             menuIcon={exhaust}
             title={"Exhaust"}
-            campos={new Vector3(1.68, 0.12, -1.66)}
+            campos={
+              new Vector3(
+                0.167310051946499,
+                0.936413131368594,
+                -12.16999867784573
+              )
+            }
             setCamPos={setCamPos}
             setSelectedMenu={setSelectedMenu}
             selectedMenu={selectedMenu}
@@ -42,7 +48,7 @@ const FloatingMenu = ({
           <FloatingMenuItem
             menuIcon={paint}
             title={"Paint"}
-            campos={new Vector3(2, 0, 0)}
+            campos={new Vector3(12.203219056537483, 0, 0)}
             setCamPos={setCamPos}
             setSelectedMenu={setSelectedMenu}
             collapse={collapse}
@@ -51,7 +57,7 @@ const FloatingMenu = ({
           <FloatingMenuItem
             menuIcon={windshield}
             title={"Wind Shield"}
-            campos={new Vector3(0, 0.6, 1)}
+            campos={new Vector3(0, 1.1661567707676392, 7.509757074533057)}
             setCamPos={setCamPos}
             setSelectedMenu={setSelectedMenu}
             collapse={collapse}
@@ -60,7 +66,13 @@ const FloatingMenu = ({
           <FloatingMenuItem
             menuIcon={seat}
             title={"Seat"}
-            campos={new Vector3(0.6, 0.95, -0.86)}
+            campos={
+              new Vector3(
+                -7.393263974489687,
+                5.566945347617387,
+                -7.208289834124356
+              )
+            }
             setCamPos={setCamPos}
             setSelectedMenu={setSelectedMenu}
             collapse={collapse}
@@ -69,7 +81,13 @@ const FloatingMenu = ({
           <FloatingMenuItem
             menuIcon={mudguard}
             title={"Mud Guard"}
-            campos={new Vector3(-0.71, 0.27, 1.06)}
+            campos={
+              new Vector3(
+                -6.310193726699199,
+                2.767059094724038,
+                7.61028495548916
+              )
+            }
             setCamPos={setCamPos}
             setSelectedMenu={setSelectedMenu}
             collapse={collapse}
@@ -78,7 +96,13 @@ const FloatingMenu = ({
           <FloatingMenuItem
             menuIcon={handle}
             title={"Handle Bar"}
-            campos={new Vector3(0.38, 0.69, 0.93)}
+            campos={
+              new Vector3(
+                7.826272919337238,
+                4.567090799826222,
+                4.825219519509125
+              )
+            }
             setCamPos={setCamPos}
             setSelectedMenu={setSelectedMenu}
             collapse={collapse}
