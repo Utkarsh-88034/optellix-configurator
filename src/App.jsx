@@ -85,7 +85,7 @@ function App() {
             <Stage shadows="contact" environment={null} center={Base}>
               <Environment
                 background={false}
-                files="autoshop.exr"
+                files="interior.exr"
                 path="/"
                 frames={Infinity}
               >
