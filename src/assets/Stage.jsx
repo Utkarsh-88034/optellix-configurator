@@ -8,9 +8,13 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Stage_Props(props) {
-  const { nodes, materials } = useGLTF('/Stage-transformed.glb')
+  const { nodes, materials } = useGLTF("/Stage-transformed.glb");
+  console.log(materials);
+  materials.White.side = FrontSide;
+  materials.Emission.side = FrontSide;
+  console.log(window.innerWidth);
   return (
-    <group {...props} dispose={null} > 
+    <group {...props} dispose={null} scale={1}>
       <mesh geometry={nodes.stage_1.geometry} material={materials.Emission} />
       <mesh geometry={nodes.stage_2.geometry} material={materials.White} />
     </group>
