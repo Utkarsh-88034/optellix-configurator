@@ -82,7 +82,12 @@ function App() {
               </mesh> */}
             <Stage_Props position={[0, -0.8, 0]} />
 
-            <Stage shadows="contact" environment={null} center={Base}>
+            <Stage
+              shadows="contact"
+              environment={null}
+              center={Base}
+              adjustCamera={false}
+            >
               <Environment
                 background={false}
                 files="interior.exr"
