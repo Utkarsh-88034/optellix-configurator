@@ -167,37 +167,50 @@ const Sidebar = ({ setCamPos, close }) => {
           <p>Playe around with paint, parts and more</p>
         </div>
       </div>
-      <MenuItem options={paintOptions} title="Paint" type={"icon"} />
+      <MenuItem
+        options={paintOptions}
+        title="Paint"
+        type={"icon"}
+        campos={new Vector3(12.203219056537483, 0, 0)}
+      />
       <MenuItem
         options={exhaustOptions}
         title="Exhaust"
         setCamPos={setCamPos}
-        campos={new Vector3(1.68, 0.12, -1.66)}
+        campos={
+          new Vector3(0.167310051946499, 0.936413131368594, -12.16999867784573)
+        }
         type="card"
       />
       <MenuItem
         options={windShieldOptions}
         title="Wind Shield"
         setCamPos={setCamPos}
-        campos={new Vector3(0, 0.6, 1)}
+        campos={new Vector3(0, 1.1661567707676392, 7.509757074533057)}
       />
       <MenuItem
         options={seatOptions}
         title="Seat"
         setCamPos={setCamPos}
-        campos={new Vector3(0.6, 0.95, -0.86)}
+        campos={
+          new Vector3(-7.393263974489687, 5.566945347617387, -7.208289834124356)
+        }
       />
       <MenuItem
         options={handleBarOptions}
         title="Handle Bar"
         setCamPos={setCamPos}
-        campos={new Vector3(0.38, 0.69, 0.93)}
+        campos={
+          new Vector3(7.826272919337238, 4.567090799826222, 4.825219519509125)
+        }
       />
       <MenuItem
         options={mudGaurdOptions}
         title="Mud Guard"
         setCamPos={setCamPos}
-        campos={new Vector3(-0.71, 0.27, 1.06)}
+        campos={
+          new Vector3(-6.310193726699199, 2.767059094724038, 7.61028495548916)
+        }
       />
       <div
         className={`h-max bg-black w-full sticky  text-white flex items-center p-4 justify-between flex-col gap-10 transition-all duration-300 ${
