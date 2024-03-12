@@ -80,7 +80,7 @@ function App() {
                 <boxGeometry args={[2, 2, 2]} />
                 <meshLambertMaterial color={"red"} />
               </mesh> */}
-            <Stage_Props position={[0, -0.6, 0]} />
+            <Stage_Props position={[0, -0.8, 0]} />
 
             <Stage shadows="contact" environment={null} center={Base}>
               <Environment
