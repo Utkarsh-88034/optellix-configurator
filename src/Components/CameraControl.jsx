@@ -31,7 +31,6 @@ const CameraControl = ({ position }) => {
         // enableZoom={false}
         makeDefault
         minDistance={1}
-        maxDistance={2.5}
         enablePan={false}
         ena
         ref={orbitRef}

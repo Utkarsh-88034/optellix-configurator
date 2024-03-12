@@ -86,7 +86,7 @@ function App() {
               shadows="contact"
               environment={null}
               center={Base}
-              adjustCamera={false}
+              // adjustCamera={false}
             >
               <Environment
                 background={false}
