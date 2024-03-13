@@ -22,7 +22,7 @@ const CameraControl = ({ position }) => {
   gl.toneMappingExposure = 1.2;
   gl.outputColorSpace = "srgb";
   camera.fov = 12;
-
+  console.log(camera.position);
   return (
     <>
       <OrbitControls

@@ -165,7 +165,7 @@ const FloatingWindow = ({ selectedMenu }) => {
     <>
       {selectedMenu !== "none" && (
         <div
-          className="absolute w-[400px] max-h-[500px] bg-white right-[10%] top-[10%] rounded-2xl text-black p-3 flex flex-col items-center gap-5 h-max shadow-2xl"
+          className="absolute w-[300px] max-h-[400px] bg-white right-[50px] top-[50%] translate-y-[-50%] rounded-2xl text-black p-3 flex flex-col items-center gap-5 h-max shadow-2xl"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
