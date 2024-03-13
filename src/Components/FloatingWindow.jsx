@@ -165,7 +165,7 @@ const FloatingWindow = ({ selectedMenu }) => {
     <>
       {selectedMenu !== "none" && (
         <div
-          className="absolute w-[300px] max-h-[400px] bg-white right-[50px] top-[50%] translate-y-[-50%] rounded-2xl text-black p-3 flex flex-col items-center gap-5 h-max shadow-2xl"
+          className="absolute w-[320px] max-h-[400px] bg-white right-[50px] top-[50%] translate-y-[-50%] rounded-2xl text-black p-3 flex flex-col items-center gap-5 h-max shadow-2xl"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -175,12 +175,12 @@ const FloatingWindow = ({ selectedMenu }) => {
           }}
         >
           <div className="w-full flex items-center gap-2">
-            <img src={iconMap[selectedMenu]} alt="" />
-            <p className="text-2xl ">{selectedMenu}</p>
+            <img src={iconMap[selectedMenu]} alt="" className="h-6" />
+            <p className="text-xl ">{selectedMenu}</p>
           </div>
           {options.map((option) => (
             <div
-              className={`h-40 w-[100%] border rounded-[12px] p-4 flex items-center justify-between transition-all gap-3 duration-75 cursor-pointer ${
+              className={`h-40 w-[100%] border rounded-[12px] p-2 flex items-center justify-between transition-all gap-3 duration-75 cursor-pointer ${
                 !(selectedOptions?.name === option.name) &&
                 "hover:border-[1px] hover:border-black/50 transition-all duration-75"
               } ${
@@ -194,7 +194,7 @@ const FloatingWindow = ({ selectedMenu }) => {
               }}
             >
               <div className="h-full relative">
-                <p className="text-lg font-semibold mb-1">{option.name}</p>
+                <p className="text-md font-semibold mb-1">{option.name}</p>
                 <p className=" text-sm font-extralight">{option.description}</p>
                 <p className="absolute bottom-0 w-max text-sm font-light">
                   {option.included ? "Included" : "Not Included"}
